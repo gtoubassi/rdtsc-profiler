@@ -1,0 +1,27 @@
+# RDTSC Cycle Profiler
+
+`cycle-profile.[ch]` implements a very simple cpu cycle profiler based
+on the x86 `rdtsc` instruction.  See `main.c` for an example usage which compares
+parsing longs with `sscanf` vs `strtol`.
+
+# How to build
+
+    $ clang -o main main.c cycle-profiler.c
+
+# How to run
+
+    $ ./main
+
+# How to see results
+
+    $ cat ./profile.out
+    START 0 14838473262650 sscanf
+    END 2464075391 14840937338041 sscanf
+    START 0 14840937339133 strtol
+    END 846938726 14841784277859 strtol
+
+This shows that it took 2464075391 / 846938726 = 2.9x as long to parse with `sscanf` vs `strtol`.
+This makes sense given `sscanf` needs to parse a format string.
+
+
+
