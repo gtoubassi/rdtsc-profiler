@@ -26,7 +26,7 @@ This makes sense given `sscanf` needs to parse a format string.
 You can use awk to sum across all measurements with the same label (which admittedly is uninteresting
 in this case)
 
-    $ cat profile.out | grep END | awk '$1 == "END" {totals[$4] += $2} END {for (v in totals) print v,totals[v]}'
+    $ cat profile.out | awk '$1 == "END" {totals[$4] += $2} END {for (v in totals) print v,totals[v]}'
     strtol 846938726
     sscanf 2464075391
 
